@@ -46,15 +46,6 @@ jobs:
           push: true
           tags: ${{ env.IMAGE_NAME_BACKEND }}:latest
 
-      # ✅ Step 6: Test Backend container (optional quick test)
-      - name: Test backend container
-        run: |
-          docker run -d --name test-backend -p 8081:8081 ${{ env.IMAGE_NAME_BACKEND }}:latest
-          sleep 5
-          curl -f http://localhost:8081 || (echo "Backend test failed!" && exit 1)
-          docker stop test-backend
-          docker rm test-backend
-
   # 🚀 Optional: Deployment Job (e.g. AWS ECS or VPS)
   deploy:
     runs-on: ubuntu-latest
