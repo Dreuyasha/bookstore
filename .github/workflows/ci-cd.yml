@@ -49,9 +49,9 @@ jobs:
       # ✅ Step 6: Test Backend container (optional quick test)
       - name: Test backend container
         run: |
-          docker run -d --name test-backend -p 8080:8080 ${{ env.IMAGE_NAME_BACKEND }}:latest
+          docker run -d --name test-backend -p 8081:8081 ${{ env.IMAGE_NAME_BACKEND }}:latest
           sleep 5
-          curl -f http://localhost:8080/books || (echo "Backend test failed!" && exit 1)
+          curl -f http://localhost:8081/books || (echo "Backend test failed!" && exit 1)
           docker stop test-backend
           docker rm test-backend
 
